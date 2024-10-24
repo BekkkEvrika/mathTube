@@ -38,8 +38,8 @@ func (m *Material) Update() error {
 	return db.Model(Material{}).Where("id", m.ID).Updates(m).Error
 }
 
-// хатман кор мекунад
-func (m *Material) AddVote() error {
+// хатман майдони votes иваз мешад
+func (m *Material) UpdateVote() error {
 	db := base.GetDB()
 	return db.Model(Material{}).Where("id", m.ID).Updates(map[string]interface{}{"votes": m.Votes}).Error
 }
