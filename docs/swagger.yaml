@@ -1,0 +1,150 @@
+basePath: /
+definitions:
+  api.Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      messageText:
+        type: string
+    type: object
+  models.Material:
+    properties:
+      address:
+        type: string
+      fullDescription:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      shortDescription:
+        type: string
+      status:
+        type: integer
+      votes:
+        type: integer
+    type: object
+host: localhost:8090
+info:
+  contact:
+    email: test
+    name: test
+  description: mathtube for video materials
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: MathTube API
+  version: "1.0"
+paths:
+  /material:
+    post:
+      consumes:
+      - application/json
+      description: create material
+      parameters:
+      - description: material info
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Material'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Error'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Error'
+      summary: Material
+      tags:
+      - Material
+    put:
+      consumes:
+      - application/json
+      description: update material
+      parameters:
+      - description: material info
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Material'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Error'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Error'
+      summary: Material
+      tags:
+      - Material
+  /material/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete material
+      parameters:
+      - description: material id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Error'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.Error'
+      summary: Material
+      tags:
+      - Material
+  /materials:
+    get:
+      consumes:
+      - application/json
+      description: materials
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Material'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/api.Error'
+      summary: Material
+      tags:
+      - Material
+swagger: "2.0"
